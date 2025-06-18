@@ -85,12 +85,12 @@ public class Example {
         }
     }
 
-//    @After
-//    public void close() {
-//        if (driver != null) {
-//            driver.quit(); // Ensure the browser is closed after the test
-//        }
-//    }
+    @After
+    public void close() {
+        if (driver != null) {
+            driver.quit(); // Ensure the browser is closed after the test
+        }
+    }
 
 //    public static void main(String[] args) {
 //    System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
