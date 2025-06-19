@@ -20,6 +20,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test đăng nhập thành công (với tài khoản hợp lệ)
     public void testLoginSuccess() {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -32,6 +33,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test đăng nhập với tài khoản bị khóa
     public void testLoginLockedOutUser() {
         driver.findElement(By.id("user-name")).sendKeys("locked_out_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -44,6 +46,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test đăng nhập với mật khẩu sai
     public void testLoginWrongPassword() {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("wrong_password");
@@ -56,6 +59,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test đăng nhập khi không nhập username
     public void testLoginEmptyUsername() {
         driver.findElement(By.id("user-name")).clear();
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -68,6 +72,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test đăng nhập khi không nhập password
     public void testLoginEmptyPassword() {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).clear();
@@ -80,6 +85,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test đăng nhập với tài khoản problem_user
     public void testLoginProblemUser() {
         driver.findElement(By.id("user-name")).sendKeys("problem_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -92,6 +98,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test đăng nhập với tài khoản có độ trễ (performance_glitch_user)
     public void testLoginPerformanceGlitchUser() {
         driver.findElement(By.id("user-name")).sendKeys("performance_glitch_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -104,6 +111,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test hiển thị sidebar sau khi đăng nhập
     public void testSidebarDisplay() {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -133,6 +141,7 @@ public class LoginLogoutTestcase {
     }
 
     @Test
+    //Test đăng xuất thành công từ sidebar
     public void testLogoutFunction() {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
