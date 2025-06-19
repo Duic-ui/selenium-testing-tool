@@ -27,15 +27,6 @@ public class Helper {
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
 
-        // Tự động click nút "OK" nếu popup hiện
-//        try {
-//            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-//            WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='OK']")));
-//            okButton.click();
-//        } catch (Exception e) {
-//            // Không thấy popup thì thôi, không làm gì
-//        }
-
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlContains("inventory.html"));
     }
@@ -49,6 +40,5 @@ public class Helper {
     public static void clickProductImage(WebDriver driver, int productId) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(
-                By.id("item_" + productId + "_img_link"))).click();
-    }
+                By.xpath(String.format("//*[@id='item_%d_title_link']", productId)))).click();    }
 }

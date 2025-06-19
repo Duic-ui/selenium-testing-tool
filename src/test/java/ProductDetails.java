@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,13 +20,13 @@ public class ProductDetails {
         Helper.login(driver, "standard_user", "secret_sauce");
     }
 
-//    @Test
-//    public void testProductImageClickNavigatesToDetails() {
-//        Helper.clickProductImage(driver, 4);
-//        String currentUrl = driver.getCurrentUrl();
-//        Assert.assertTrue(currentUrl.contains("id=4"));
-//        System.out.println("✅ Click image --> Navigated to: " + currentUrl);
-//    }
+    @Test
+    public void testProductImageClickNavigatesToDetails() {
+        Helper.clickProductImage(driver, 4);
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("id=4"));
+        System.out.println("✅ Click image --> Navigated to: " + currentUrl);
+    }
 
     @Test
     public void testProductTitleClickNavigatesToDetails() {
@@ -39,7 +40,7 @@ public class ProductDetails {
     public void testBackButton(){
         Helper.clickProductTitle(driver, 0);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(By.className("inventory_details_back_button"))).click();
 
         String currentUrl = driver.getCurrentUrl();
@@ -47,10 +48,24 @@ public class ProductDetails {
         System.out.println("✅ Back button --> Navigated to: " + currentUrl);
     }
 
-//    @After
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit(); // Đảm bảo đóng browser sau mỗi test
-//        }
-//    }
+    @Test
+    public void testAddToCartButton() {
+        Helper.clickProductTitle(driver, 0);
+
+        // Bước 1: Kiểm tra ban đầu là "ADD TO CART"
+        WebElement button = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div/button"));
+        Assert.assertEquals("ADD TO CART", button.getText());
+
+        button.click();
+
+        WebElement updatedButton = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div/button"));
+        Assert.assertEquals("REMOVE", updatedButton.getText());
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit(); // Đảm bảo đóng browser sau mỗi test
+        }
+    }
 }
