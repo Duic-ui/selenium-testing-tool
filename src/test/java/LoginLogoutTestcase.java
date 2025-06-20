@@ -22,6 +22,7 @@ public class LoginLogoutTestcase {
     @Test
     //Test đăng nhập thành công (với tài khoản hợp lệ)
     public void testLoginSuccess() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -35,6 +36,7 @@ public class LoginLogoutTestcase {
     @Test
     //Test đăng nhập với tài khoản bị khóa
     public void testLoginLockedOutUser() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).sendKeys("locked_out_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -48,6 +50,7 @@ public class LoginLogoutTestcase {
     @Test
     //Test đăng nhập với mật khẩu sai
     public void testLoginWrongPassword() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("wrong_password");
         driver.findElement(By.id("login-button")).click();
@@ -61,6 +64,7 @@ public class LoginLogoutTestcase {
     @Test
     //Test đăng nhập khi không nhập username
     public void testLoginEmptyUsername() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).clear();
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -74,6 +78,7 @@ public class LoginLogoutTestcase {
     @Test
     //Test đăng nhập khi không nhập password
     public void testLoginEmptyPassword() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("login-button")).click();
@@ -87,6 +92,7 @@ public class LoginLogoutTestcase {
     @Test
     //Test đăng nhập với tài khoản problem_user
     public void testLoginProblemUser() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).sendKeys("problem_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -100,6 +106,7 @@ public class LoginLogoutTestcase {
     @Test
     //Test đăng nhập với tài khoản có độ trễ (performance_glitch_user)
     public void testLoginPerformanceGlitchUser() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).sendKeys("performance_glitch_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -137,7 +144,7 @@ public class LoginLogoutTestcase {
         Assert.assertTrue(driver.findElement(By.id("reset_sidebar_link")).isDisplayed());
         String log = "testSidebarDisplay: Kiểm tra hiển thị và các mục trong sidebar sau khi đăng nhập.";
         testLogs.add(log);
-        showPopup("testSidebarDisplay", "Kiểm tra hiển thị và các mục trong sidebar sau khi đăng nhập.");
+        showPopup("testSidebarDisplay", "Kiểm tra hiển thị và 4 mục trong sidebar sau khi đăng nhập.");
     }
 
     @Test
